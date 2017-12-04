@@ -22,6 +22,7 @@ public class TestMain {
         //func2();
 //        func3();
         func4();
+        System.out.println("dec");
     }
 
     public static void func4() {
