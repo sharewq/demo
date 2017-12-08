@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+
 /**
  * 分布式系统，集群锁,分布式锁
  * Created by Think on 2017/12/7.
@@ -219,6 +220,22 @@ public class redisLock {
         if (locked) {
             redisTemplate.delete(lockKey);
             locked = false;
+        }
+    }
+
+
+    private final String JOB_TIME_OUT_KEY = "JOB_TIME_OUT_KEY";
+
+    public void test() {
+        redisLock lock = new redisLock(redisTemplate, JOB_TIME_OUT_KEY, 6000);
+        try {
+            if (lock.lock()) {
+                logger.info("your deal with method");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
         }
     }
 }
