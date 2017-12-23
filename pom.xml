@@ -139,6 +139,12 @@
             <version>${aspectj.version}</version>
         </dependency>
 
+        <!--php反序列号工具-->
+        <dependency>
+            <groupId>org.sction</groupId>
+            <artifactId>phprpc</artifactId>
+            <version>3.0.2</version>
+        </dependency>
     </dependencies>
 
     <build>
